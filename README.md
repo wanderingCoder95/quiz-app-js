@@ -86,5 +86,5 @@ Solo Project · Core Programming & JavaScript Logic
 ---
 
 ## 🌐 Live Demo
-*(Add GitHub Pages link here if deployed)*
+[Website](https://wanderingcoder95.github.io/quiz-app-js/)
 
