@@ -1,0 +1,225 @@
+:root {
+    --kbc-purple: #11093A;
+    --kbc-purple-light: #2c1e65;
+    --kbc-gold: #D4AF37;
+    --kbc-text: #ffffff;
+    --correct-green: #0f9d58;
+    --wrong-red: #d93025;
+    --locked-orange: #ff9800;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at center, var(--kbc-purple-light), var(--kbc-purple), #000);
+    color: var(--kbc-text);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 900px; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px;
+}
+
+/* --- Screen Management --- */
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    transition: opacity 0.5s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Shapes & Buttons --- */
+.question-box, .option-btn {
+    background: linear-gradient(90deg, #000, var(--kbc-purple-light), #000);
+    border: 2px solid var(--kbc-gold);
+    border-radius: 50px;
+    padding: 20px 40px; /* Increased padding */
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    width: 100%;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* --- Start Screen --- */
+.kbc-logo-circle {
+    width: 180px; 
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid var(--kbc-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px var(--kbc-gold);
+    margin-bottom: 30px;
+    background: #000;
+}
+
+.kbc-logo-circle h1 {
+    font-size: 2.5rem; 
+    margin: 0;
+}
+
+.kbc-button {
+    background: var(--kbc-gold);
+    color: #000;
+    font-weight: bold;
+    border: none;
+    padding: 20px 50px; 
+    font-size: 1.5rem;  
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.kbc-button:hover {
+    background: #fff;
+    box-shadow: 0 0 15px #fff;
+}
+
+/* --- Quiz Screen --- */
+.header-hud {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+    font-size: 1.2rem; 
+}
+
+.timer-badge {
+    width: 80px; 
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--kbc-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    background: #000;
+}
+
+.progress-badge {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.question-box {
+    font-size: 1.8rem; 
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px; 
+    width: 100%;
+}
+
+.option-btn {
+    font-size: 1.4rem; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    padding-left: 30px;
+}
+
+.option-btn:hover {
+    background: var(--kbc-gold);
+    color: #000;
+}
+
+/* Answer States */
+.option-btn.locked {
+    background: var(--locked-orange);
+    color: #fff;
+    border-color: #fff;
+}
+
+.option-btn.correct {
+    background: var(--correct-green);
+    border-color: #fff;
+    animation: flash 0.5s infinite alternate;
+}
+
+.option-btn.wrong {
+    background: var(--wrong-red);
+    border-color: #fff;
+}
+
+@keyframes flash {
+    from { box-shadow: 0 0 10px var(--correct-green); }
+    to { box-shadow: 0 0 30px var(--correct-green); }
+}
+
+/* --- Result Screen --- */
+.score-display {
+    font-size: 5rem;
+    font-weight: bold;
+    color: var(--kbc-gold);
+    text-shadow: 0 0 20px var(--kbc-gold);
+}
+
+.report-container {
+    margin-top: 20px;
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.5);
+    padding: 15px;
+    border: 1px solid var(--kbc-gold);
+}
+
+.report-item {
+    padding: 15px;
+    border-bottom: 1px solid #444;
+    text-align: left;
+    font-size: 1.1rem;
+}
+.report-item.correct { border-left: 5px solid var(--correct-green); }
+.report-item.wrong { border-left: 5px solid var(--wrong-red); }
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .options-grid {
+        grid-template-columns: 1fr; 
+    }
+    
+    .question-box {
+        font-size: 1.4rem;
+    }
+
+    .option-btn {
+        font-size: 1.1rem;
+    }
+}
